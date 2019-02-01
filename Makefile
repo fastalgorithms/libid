@@ -9,7 +9,7 @@
 #FFLAGS=-O3 -!P
 
 FC=gfortran
-FFLAGS=-O2 -w -llapack -lblas
+FFLAGS=-O2 -w -framework accelerate
 
 
 
