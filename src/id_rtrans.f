@@ -30,7 +30,7 @@ c
 c
         subroutine idd_random_transf_init(nsteps,n,w,keep)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension w(*)
 c
 c       prepares and stores in array w the data used
@@ -89,7 +89,7 @@ c
 c 
         subroutine idz_random_transf_init(nsteps,n,w,keep)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension w(*)
 c
 c       prepares and stores in array w the data used
@@ -153,7 +153,7 @@ c
 c 
         subroutine idd_random_transf(x,y,w)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension x(*),y(*),w(*)
 c
 c       applies rapidly a random orthogonal matrix
@@ -190,7 +190,7 @@ c
 c 
         subroutine idd_random_transf_inverse(x,y,w)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension x(*),y(*),w(*)
 c
 c       applies rapidly a random orthogonal matrix
@@ -230,7 +230,7 @@ c
 c 
         subroutine idz_random_transf(x,y,w)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         complex *16 x(*),y(*)
         dimension w(*)
 c
@@ -269,7 +269,7 @@ c
 c 
         subroutine idz_random_transf_inverse(x,y,w)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         complex *16 x(*),y(*)
         dimension w(*)
 c
@@ -311,7 +311,7 @@ c
 c 
         subroutine idd_random_transf0_inv(nsteps,x,y,n,w2,albetas,iixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension x(*),y(*),w2(*),albetas(2,n,*),iixs(n,*)
 c
 c       routine idd_random_transf_inverse serves as a memory wrapper
@@ -343,7 +343,7 @@ c
 c 
         subroutine idd_random_transf00_inv(x,y,n,albetas,ixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension x(*),y(*),albetas(2,*),ixs(*)
 c
 c       implements one step of the random transform required
@@ -391,7 +391,7 @@ c
         subroutine idz_random_transf0_inv(nsteps,x,y,n,w2,albetas,
      1      gammas,iixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         complex *16 x(*),y(*),w2(*),gammas(n,*)
         dimension albetas(2,n,*),iixs(n,*)
 c
@@ -424,7 +424,7 @@ c
 c 
         subroutine idz_random_transf00_inv(x,y,n,albetas,gammas,ixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         complex *16 x(*),y(*),gammas(*),a,b
         dimension albetas(2,*),ixs(*)
 c
@@ -465,7 +465,7 @@ c
 c 
         subroutine idd_random_transf0(nsteps,x,y,n,w2,albetas,iixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension x(*),y(*),w2(*),albetas(2,n,*),iixs(n,*)
 c
 c       routine idd_random_transf serves as a memory wrapper
@@ -496,7 +496,7 @@ c
 c 
         subroutine idd_random_transf00(x,y,n,albetas,ixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension x(*),y(*),albetas(2,*),ixs(*)
 c
 c       implements one step of the random transform
@@ -533,7 +533,7 @@ c
 c 
         subroutine idz_random_transf_init0(nsteps,n,albetas,gammas,ixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension albetas(2,n,*),ixs(n,*)
         complex *16 gammas(n,*)
 c
@@ -555,7 +555,7 @@ c
 c 
         subroutine idz_random_transf_init00(n,albetas,gammas,ixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension albetas(2,*),gammas(*),ixs(*)
 c
 c       constructs one stage of the random transform
@@ -619,7 +619,7 @@ c
         subroutine idz_random_transf0(nsteps,x,y,n,w2,albetas,
      1      gammas,iixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         complex *16 x(*),y(*),w2(*),gammas(n,*)
         dimension albetas(2,n,*),iixs(n,*)
 c
@@ -651,7 +651,7 @@ c
 c 
         subroutine idz_random_transf00(x,y,n,albetas,gammas,ixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         complex *16 x(*),y(*),gammas(*),a,b
         dimension albetas(2,*),ixs(*)
 c
@@ -691,7 +691,7 @@ c
 c
         subroutine idd_random_transf_init0(nsteps,n,albetas,ixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension albetas(2,n,*),ixs(n,*)
 c
 c       routine idd_random_transf_init serves as a memory wrapper
@@ -711,7 +711,7 @@ c
 c 
         subroutine idd_random_transf_init00(n,albetas,ixs)
         implicit real *8 (a-h,o-z)
-        save
+cccc    save
         dimension albetas(2,*),ixs(*)
 c
 c       constructs one stage of the random transform

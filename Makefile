@@ -152,6 +152,8 @@ clean:
 
 test: idd_r_test idz_r_test idd_a_test idz_a_test
 
+testall: id_rand_test id_rtrans_test idd_snorm_test idd_sfft_test idd_house_test idd_qrpiv_test idd_id_test
+
 id_rand_test: $(ID_RAND)
 	cd $(BIN_DIR); \
 	$(F77) $(FFLAGS) -o ../$(TMP_DIR)/$@ ../$(TEST_DIR)/$@.f \

@@ -49,7 +49,7 @@ c       Golub and Van Loan, "Matrix Computations," 3rd edition,
 c            Johns Hopkins University Press, 1996, Chapter 5.
 c
         implicit none
-        save
+cccc        save
         integer n,k,ifrescal
         real*8 vn(2:*),scal,u(n),v(n),fact,sum
 c
@@ -142,7 +142,7 @@ c       Golub and Van Loan, "Matrix Computations," 3rd edition,
 c            Johns Hopkins University Press, 1996, Chapter 5.
 c
         implicit none
-        save
+cccc        save
         integer n,k
         real*8 x(n),rss,sum,v1,scal,vn(2:*),x1
 c
@@ -250,7 +250,7 @@ c       output:
 c       h -- identity_matrix - scal * vn * transpose(vn)
 c
         implicit none
-        save
+cccc        save
         integer n,j,k
         real*8 vn(2:*),h(n,n),scal,factor1,factor2
 c

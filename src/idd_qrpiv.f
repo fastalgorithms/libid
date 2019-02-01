@@ -226,7 +226,7 @@ c       output:
 c       v -- vector to which Q (or its transpose) has been applied
 c
         implicit none
-        save
+cccc        save
         integer m,n,krank,k,ifrescal,mm,iftranspose
         real*8 a(m,n),v(m),scal
 c
@@ -291,7 +291,7 @@ c       work:
 c       work -- must be at least krank real*8 elements long
 c
         implicit none
-        save
+cccc        save
         integer l,m,n,krank,j,k,ifrescal,mm,iftranspose
         real*8 a(m,n),b(m,l),work(krank)
 c
