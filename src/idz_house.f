@@ -49,7 +49,7 @@ c       Golub and Van Loan, "Matrix Computations," 3rd edition,
 c            Johns Hopkins University Press, 1996, Chapter 5.
 c
         implicit none
-        save
+cccc        save
         integer n,k,ifrescal
         real*8 scal,sum
         complex*16 vn(2:*),u(n),v(n),fact
@@ -142,7 +142,7 @@ c       Golub and Van Loan, "Matrix Computations," 3rd edition,
 c            Johns Hopkins University Press, 1996, Chapter 5.
 c
         implicit none
-        save
+cccc        save
         integer n,k
         real*8 scal,test,rss,sum
         complex*16 x(n),v1,vn(2:*),x1,phase,css
@@ -259,7 +259,7 @@ c       output:
 c       h -- identity_matrix - scal * vn * adjoint(vn)
 c
         implicit none
-        save
+cccc        save
         integer n,j,k
         real*8 scal
         complex*16 vn(2:*),h(n,n),factor1,factor2
