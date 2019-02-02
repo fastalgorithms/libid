@@ -8,6 +8,7 @@
 #FC=fort77
 #FFLAGS=-O3 -!P
 
+# used for gfortran on macos
 FC=gfortran
 FFLAGS=-O2 -w -framework accelerate
 
