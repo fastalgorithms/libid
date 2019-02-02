@@ -1,5 +1,10 @@
 # Interpolative Decomposition Library
 
+This is a fork of the ID library 
+
+- P. Martinsson, V. Rokhlin, Y. Shkolnisky, M. Tygert, ID: a software
+package for low-rank approximation of matrices via interpolative decompositions,  http://tygert.com/software.html
+
 ### Original distribution readme
 Please see the documentation in subdirectory doc of this id_dist directory.
 
