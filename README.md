@@ -14,6 +14,7 @@ information about the routines -- _N.B._ stands for _nota_bene_ (Latin for
 "note well").
 
 #### Update: Feb 2, 2019
-Removed or commented out `save` statements for OpenMP
+- Removed or commented out `save` statements for OpenMP
 compatability. However, these statements still exist in the random
 number generation routines in id_rand.f.
+- Transferred to www.gitlab.com/fastalgorithms
