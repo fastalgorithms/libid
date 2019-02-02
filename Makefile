@@ -146,8 +146,8 @@ all: $(ALL_ID_OBJS) id_lib.a test
 	and no errors.
 
 clean:
-	cd $(BIN_DIR); rm -f *
-	cd $(TMP_DIR); rm -f *
+	rm -f $(BIN_DIR)/*
+	rm -f $(TMP_DIR)/*
 	rm -f *.a
 
 test: idd_r_test idz_r_test idd_a_test idz_a_test
