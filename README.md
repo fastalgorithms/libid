@@ -1,4 +1,4 @@
-#Interpolative Decomposition Library
+# Interpolative Decomposition Library
 
 ### Original distribution readme
 Please see the documentation in subdirectory doc of this id_dist directory.
