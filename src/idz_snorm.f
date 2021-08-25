@@ -83,8 +83,9 @@ c
         implicit none
         integer m,n,its,it,n2,k
         real*8 snorm,enorm
-        complex*16 p1a,p2a,p3a,p4a,p1,p2,p3,p4,u(m),v(n)
+        complex*16 p1a,p2a,p3a,p4a,p1,p2,p3,p4,u(m),v(n),one
         external matveca,matvec
+        data one/(1.0d0,1.0d0)/
 c
 c
 c       Fill the real and imaginary parts of each entry
@@ -95,7 +96,7 @@ c
         call id_srand(n2,v)
 c
         do k = 1,n
-          v(k) = 2*v(k)-1
+          v(k) = 2*v(k)-one
         enddo ! k
 c
 c
@@ -337,8 +338,9 @@ c
         real*8 snorm,enorm
         complex*16 p1a,p2a,p3a,p4a,p1a2,p2a2,p3a2,p4a2,
      1             p1,p2,p3,p4,p12,p22,p32,p42,u(m),u1(m),u2(m),
-     2             v(n),v1(n),v2(n)
+     2             v(n),v1(n),v2(n),one
         external matveca,matvec,matveca2,matvec2
+        data one/(1.0d0,1.0d0)/
 c
 c
 c       Fill the real and imaginary parts of each entry
@@ -349,7 +351,7 @@ c
         call id_srand(n2,v)
 c
         do k = 1,n
-          v(k) = 2*v(k)-1
+          v(k) = 2*v(k)-one
         enddo ! k
 c
 c

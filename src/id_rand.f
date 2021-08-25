@@ -31,7 +31,7 @@ c
 c
 c
 c
-        subroutine id_frand(n,r)
+        subroutine id_frand_help(n,r,iflag,t)
 c
 c       generates n pseudorandom numbers drawn uniformly from [0,1],
 c       via a very efficient lagged Fibonnaci method.
@@ -40,6 +40,11 @@ c       n be at least 55.
 c
 c       input:
 c       n -- number of pseudorandom numbers to generate
+c       iflag -- iflag to set seeds or generate random numbers
+c                1 set seeds to t
+c                2 set seeds to original s0
+c                else generate random numbers
+c       t -- seeds to set if iflag == 1
 c
 c       output:
 c       r -- array of pseudorandom numbers
@@ -52,7 +57,7 @@ c            3rd edition, Cambridge University Press, 2007,
 c            Section 7.1.5.
 c
         implicit none
-        integer n,k
+        integer n,k,iflag
         real*8 r(n),s(55),t(55),s0(55),x
         save
 c
@@ -117,6 +122,33 @@ c
      8  0.9920272858340107d0/
 c
 c
+c       initializes the seed values in s
+c       (any appropriately random numbers will do).
+c
+c       input:
+c       t -- values to copy into s
+c
+        if(iflag.eq.1) then
+          do k = 1,55
+            s(k) = t(k)
+          enddo ! k
+          return
+        endif
+c
+c
+c
+c
+c       initializes the seed values in s to their original values.
+c
+        if(iflag.eq.2) then
+          do k = 1,55
+            s(k) = s0(k)
+          enddo ! k
+          return
+        endif
+c
+
+c
         do k = 1,24
 c
           x = s(k+31)-s(k)
@@ -149,41 +181,78 @@ c
         enddo ! k
 c
 c
-        return
 c
 c
-c
-        entry id_frandi(t)
-c
-c       initializes the seed values in s
-c       (any appropriately random numbers will do).
-c
-c       input:
-c       t -- values to copy into s
-c
-        do k = 1,55
-          s(k) = t(k)
-        enddo ! k
-c
-        return
-c
-c
-c
-        entry id_frando()
-c
-c       initializes the seed values in s to their original values.
-c
-        do k = 1,55
-          s(k) = s0(k)
-        enddo ! k
 c
         return
         end
 c
 c
 c
+        subroutine id_frandi(t)
+        implicit none
+        integer n,iflag
+        real*8 dummy(1),t(55)
+
+        n=1
+        iflag = 1
+        call id_frand_help(n,dummy,iflag,t)
+        
+        end
 c
-        subroutine id_srand(n,r)
+c
+c
+        subroutine id_frando()
+        implicit none
+        integer n,iflag
+        real*8 dummy1(1), dummy2(55)
+
+        n=1
+        iflag = 2
+        call id_frand_help(n,dummy1,iflag,dummy2)
+        
+        end
+c
+c
+c
+c
+c
+c
+c
+        subroutine id_frand(n,r)
+c
+c       generates n pseudorandom numbers drawn uniformly from [0,1],
+c       via a very efficient lagged Fibonnaci method.
+c       Unlike routine id_srand, the present routine requires that
+c       n be at least 55.
+c
+c       input:
+c       n -- number of pseudorandom numbers to generate
+c
+c       output:
+c       r -- array of pseudorandom numbers
+c
+c       _N.B._: n must be at least 55.
+c
+c       reference:
+c       Press, Teukolsky, Vetterling, Flannery, "Numerical Recipes,"
+c            3rd edition, Cambridge University Press, 2007,
+c            Section 7.1.5.
+c
+        implicit none
+        integer n,iflag
+        real*8 r(n), dummy(55)
+        
+        iflag = 0
+        call id_frand_help(n,r,iflag,dummy)
+        
+        return
+        end
+c
+c
+c
+c
+        subroutine id_srand_help(n,r,iflag,t)
 c
 c       generates n pseudorandom numbers drawn uniformly from [0,1],
 c       via a very efficient lagged Fibonnaci method.
@@ -192,6 +261,11 @@ c       that n be at least 55.
 c
 c       input:
 c       n -- number of pseudorandom numbers to generate
+c       iflag -- iflag to set seeds or generate random numbers
+c                1 set seeds to t
+c                2 set seeds to original s0
+c                else generate random numbers
+c       t -- seeds to set if iflag == 1
 c
 c       output:
 c       r -- array of pseudorandom numbers
@@ -202,7 +276,7 @@ c            3rd edition, Cambridge University Press, 2007,
 c            Section 7.1.5.
 c
         implicit none
-        integer n,k,l,m
+        integer n,k,l,m,iflag
         real*8 s(55),r(n),s0(55),t(55),x
         save
 c
@@ -269,6 +343,42 @@ c
      8  0.8539399636754000d0/
 c
 c
+c
+c
+c       initializes the seed values in s
+c       (any appropriately random numbers will do).
+c
+c       input:
+c       t -- values to copy into s
+c
+        if(iflag.eq.1) then
+          do k = 1,55
+            s(k) = t(k)
+          enddo ! k
+c
+          l = 55
+          m = 24
+          return
+        endif
+c
+c
+c
+c
+c       initializes the seed values in s to their original values.
+c
+        if(iflag.eq.2) then
+          do k = 1,55
+            s(k) = s0(k)
+          enddo ! k
+c
+          l = 55
+          m = 24
+          return
+        endif
+c
+
+c
+c
         do k = 1,n
 c
 c         Run one step of the recurrence.
@@ -292,42 +402,66 @@ c
 c
 c
         return
+        end
 c
 c
 c
-        entry id_srandi(t)
 c
-c       initializes the seed values in s
-c       (any appropriately random numbers will do).
+        subroutine id_srand(n,r)
+c
+c       generates n pseudorandom numbers drawn uniformly from [0,1],
+c       via a very efficient lagged Fibonnaci method.
+c       Unlike routine id_frand, the present routine does not requires
+c       that n be at least 55.
 c
 c       input:
-c       t -- values to copy into s
+c       n -- number of pseudorandom numbers to generate
 c
-        do k = 1,55
-          s(k) = t(k)
-        enddo ! k
+c       output:
+c       r -- array of pseudorandom numbers
 c
-        l = 55
-        m = 24
+c       reference:
+c       Press, Teukolsky, Vetterling, Flannery, "Numerical Recipes,"
+c            3rd edition, Cambridge University Press, 2007,
+c            Section 7.1.5.
 c
-        return
-c
-c
-c
-        entry id_srando()
-c
-c       initializes the seed values in s to their original values.
-c
-        do k = 1,55
-          s(k) = s0(k)
-        enddo ! k
-c
-        l = 55
-        m = 24
-c
+        implicit none
+        integer n,iflag
+        real*8 r(n),dummy(55)
+
+        
+        iflag = 0
+        call id_srand_help(n,r,iflag,dummy)
+
         return
         end
 c
+c
+c
+c
+        subroutine id_srandi(t)
+        implicit none
+        integer n,iflag
+        real*8 dummy(1),t(55)
+
+        n=1
+        iflag = 1
+        call id_srand_help(n,dummy,iflag,t)
+        
+        end
+c
+c
+c
+        subroutine id_srando()
+        implicit none
+        integer n,iflag
+        real*8 dummy1(1), dummy2(55)
+
+        n=1
+        iflag = 2
+        call id_srand_help(n,dummy1,iflag,dummy2)
+        
+        end
 c
 c
 c
