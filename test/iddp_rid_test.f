@@ -25,7 +25,9 @@ c
         read *,n
         call prinf('n = *',n,1)
 c
-        krank = 5
+c        krank = 5
+        print *,'Enter k:'
+        read *,krank
         call prinf('krank = *',krank,1)
 c
 c
@@ -36,7 +38,11 @@ c
 c
 c       ID a via a randomized algorithm.
 c
-        eps = .1d-12
+c        eps = .1d-12
+        print *,'Enter eps:'
+        read *,eps
+        print *, "eps: ", eps
+
         lproj = len
 c
         call iddp_rid(lproj,eps,m,n,matvect,a,p2,p3,p4,
@@ -84,22 +90,52 @@ c       a -- filled matrix
 c
         implicit none
         integer krank,j,k,l,m,n
+        integer krank1,krank2,krank3
         real*8 r1,pi,a(m,n),sum
+        real*8 val1,val2,val3
+
+        krank1 = krank/3
+        krank2 = krank1*2
+        krank3 = krank
 c
         r1 = 1
         pi = 4*atan(r1)
 c
+        val1 = 3
 c
         do k = 1,n
           do j = 1,m
 c
             sum = 0
 c
-            do l = 1,krank
+
+            do l = 1,krank1
               sum = sum+cos(pi*(j-r1/2)*(l-r1/2)/m)*sqrt(r1*2/m)
      1                 *cos(pi*(k-r1/2)*(l-r1/2)/n)*sqrt(r1*2/n)
-     2                 *exp(log(1d-10)*(l-1)/(krank-1))
+     2                 *exp(log(1d-10)*(l-1)/(krank-1))*val1
             enddo ! l
+
+            val2 = exp(log(1d-10)*(krank1-1)/(krank-1))*val1
+
+            do l = krank1+1,krank2
+              sum = sum+cos(pi*(j-r1/2)*(l-r1/2)/m)*sqrt(r1*2/m)
+     1                 *cos(pi*(k-r1/2)*(l-r1/2)/n)*sqrt(r1*2/n)
+     2                 *(krank+krank1+1.0-l)/krank*val2
+            enddo ! l
+
+            val3 = (krank+krank1+1.0-krank2)/krank*val2
+
+            do l = krank2+1,krank3
+              sum = sum+cos(pi*(j-r1/2)*(l-r1/2)/m)*sqrt(r1*2/m)
+     1                 *cos(pi*(k-r1/2)*(l-r1/2)/n)*sqrt(r1*2/n)
+     2                 *exp(log(1d-10)*(l-1)/(krank-1))*val3
+            enddo ! l
+
+cc            do l = 1,krank
+cc              sum = sum+cos(pi*(j-r1/2)*(l-r1/2)/m)*sqrt(r1*2/m)
+cc     1                 *cos(pi*(k-r1/2)*(l-r1/2)/n)*sqrt(r1*2/n)
+cc     2                 *exp(log(1d-10)*(l-1)/(krank-1))
+cc            enddo ! l
 c
             a(j,k) = sum
 c
