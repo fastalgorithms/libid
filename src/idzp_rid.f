@@ -231,7 +231,9 @@ c
         integer m,n,krank,ifrescal,k,lra,ier,m2
         real*8 eps,enorm
         complex*16 x(m),ra(n,2,*),p1,p2,p3,p4,scal(n+1),y(n),residual
+        complex*16 one
         external matveca
+        data one/(1.0d0,1.0d0)/
 c
 c
         ier = 0
@@ -256,6 +258,9 @@ c         Apply the adjoint of a to a random vector.
 c
           m2 = m*2
           call id_srand(m2,x)
+          do k=1,m
+            x(k) = 2*x(k) - one
+          enddo
           call matveca(m,x,n,ra(1,1,krank+1),p1,p2,p3,p4)
 c
           do k = 1,n

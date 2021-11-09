@@ -252,6 +252,9 @@ c
 c         Apply the transpose of a to a random vector.
 c
           call id_srand(m,x)
+          do k  = 1,m
+            x(k) = 2*x(k) - 1.0d0
+          enddo
           call matvect(m,x,n,ra(1,1,krank+1),p1,p2,p3,p4)
 c
           do k = 1,n
